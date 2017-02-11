@@ -1,3 +1,6 @@
+
+var db = require('./models/game');
+var mongoose = require('mongoose');
 // This file allows us to seed our application with data
 // simply run: `node seed.js` from the root of this project folder.
 
@@ -15,39 +18,48 @@
 // })
 
 
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+// var mongoose = require("mongoose");
+// var Schema = mongoose.Schema;
+//
+// // description of structure
+// var GameSchema = new Schema({
+//   genre: String,
+//   title: String,
+//   isCool: Boolean
+// });
 
-// description of structure
-var GameSchema = new Schema({
-  genre: String,
-  title: String,
-  isCool: Boolean
-});
-
-// turn it into a cookie model (which we can CRUD)
-var Game = mongoose.model('Game', GameSchema);
+// // turn it into a cookie model (which we can CRUD)
+// var Game = mongoose.model('Game', GameSchema);
 
 // NAME AND CONNECT TO DATABASE
-mongoose.connect('mongodb://localhost/express-personal-api')
+ mongoose.connect('mongodb://localhost/express-personal-api')
 
-var game = [
-  {genre: "Real Time Strategy", title: "Command And Conquer", isCool: true},
-  {genre: "Side-Scroller", title: "This War of Mine", isCool: true},
-  {genre: "First Person Shooter", title: "Harry Poter", isCool: false},
+var games = [
+  {
+    genre: "Real Time Strategy",
+    title: "Command And Conquer",
+    isCool: true
+  },
+
+  {
+    genre: "Side-Scroller",
+    title: "This War of Mine",
+    isCool: true
+},
+
+  {
+    genre: "First Person Shooter",
+    title: "Harry Poter",
+    isCool: false
+  },
 
 ];
 
 
-// //// remove all the cookies
-// Cookie.remove({}, function(err){
-//   if(err){ console.log(err); }
-//   // console.log("removed all the cookies")
-
-  // create the cookies
-  Game.create(game, function(err, game){
+  // create the games
+  db.create(games, function(err, pototo){
     if(err){ console.log(err); }
-    console.log("seeded the db with", game.length, "games");
-    console.log(game);
+    console.log("Seeded the db with", games.length, "games");
+    console.log(pototo);
     process.exit();
   });

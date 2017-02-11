@@ -18,16 +18,37 @@ app.use(function(req, res, next) {
 /************
  * DATABASE *
  ************/
-
-// var db = require('./models');
-
-/**********
- * ROUTES *
- **********/
+//
+  var db = require('./models');
+//
+// /**********
+// * ROUTES *
+ //**********/
 
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
 app.use(express.static('public'));
+
+
+// get all games
+app.get("/api/games", function findGames(req, res){
+  db.Game.find({}, (err, games) => {
+    if (err) { return console.log("index error: " + err); }
+    res.send(games);
+  });
+});
+
+// get one book
+app.get('/api/games/:id', function(req, res) {
+  db.Game.findOne({ _id : req.params.id }, function(err, document) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(document);
+    }
+  });
+});
+
 
 /*
  * HTML Endpoints
@@ -41,6 +62,8 @@ app.get('/', function homepage(req, res) {
 /*
  * JSON API Endpoints
  */
+
+
 
 app.get('/api', function apiIndex(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.

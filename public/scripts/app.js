@@ -1,6 +1,6 @@
-console.log("Sanity Check: JS is working!");
+// console.log("Sanity Check: JS is working!");
 
-var games = [];
+
 
 
 $(document).ready(function(){

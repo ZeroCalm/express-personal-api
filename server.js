@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // allow cross origin requests (optional)
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -75,8 +75,9 @@ app.get('/api', function apiIndex(req, res) {
     baseUrl: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "GET", path: "/api/profile", description: "All About Me"}, 
+      {method: "GET", path: "/api/games", description: "All of the games"}
+
     ]
   })
 });
@@ -85,10 +86,6 @@ app.get('/api', function apiIndex(req, res) {
  * SERVER *
  **********/
 
-// listen on port 3000
-//  app.listen(process.env.PORT || 3000) {
-//   console.log('Express server is up and running on http://localhost:3000/');
-// });
 
 app.listen(process.env.PORT || 3000, () => {
   console.log('Express server is up and running on http://localhost:3000/');

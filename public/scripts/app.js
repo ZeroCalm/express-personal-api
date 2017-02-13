@@ -17,5 +17,10 @@ $(document).ready(function(){
 
 function handleSuccess(json) {
   games = json;
-  render();
+console.log(json)
+}
+
+
+function handleError(){
+  console.log("Error: ");
 }

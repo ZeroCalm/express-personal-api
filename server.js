@@ -38,7 +38,7 @@ app.get("/api/games", function findGames(req, res){
   });
 });
 
-// get one book
+// get one game
 app.get('/api/games/:id', function(req, res) {
   db.Game.findOne({ _id : req.params.id }, function(err, document) {
     if (err) {
